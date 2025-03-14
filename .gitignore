@@ -1,0 +1,6 @@
+node_modules
+.env
+db.sql
+Archive[0-9].zip
+test
+.idea

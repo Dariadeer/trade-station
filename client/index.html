@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script defer src="/script.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="logo.webp" type="image/x-icon">
+    <title>Trade Hub | Hades' Star</title>
+    <meta name="title" content="Trade Hub | Hades' Star" />
+    <meta name="description" content="The best platform for artifact trading in Hades' Star!" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://fi7.bot-hosting.net:21533/" />
+    <meta property="og:title" content="Trade Hub | Hades' Star" />
+    <meta property="og:description" content="The best platform for artifact trading in Hades' Star!" />
+    <meta property="og:image" content="http://fi7.bot-hosting.net:21533/logo.png" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="http://fi7.bot-hosting.net:21533/" />
+    <meta property="twitter:title" content="Trade Hub | Hades' Star" />
+    <meta property="twitter:description" content="The best platform for artifact trading in Hades' Star!" />
+    <meta property="twitter:image" content="http://fi7.bot-hosting.net:21533/logo.png" />
+
+    <meta name="keywords" content="hadesstar, trading, trade, exchange, artifacts, station, hades', star, hades">
+
+</head>
+<body>
+    <div class="error-message" onclick="hide(document.querySelector('.error-message'))"></div>
+    <div class="cli-container none">
+        <div class="cli">
+            <div class="cli-output cli-system">Welcome to the Trade Hub CLI!</div>
+        </div>
+        <div class="cli-input-container">
+            <label class="cli-input-sign">></label>
+            <input class="cli-input" type="text">
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="navbar-container">
+            <div class="navbar">
+                <div class="underline" style="display: none;"></div>
+                <div class="navbar-el-container">
+                    <div class="navbar-el logo" onclick="showLanding()">
+                        <img class="logo-img" src="logo.webp" alt="Website logo">
+                    </div>
+                    <div class="navbar-el" id="items" onclick="showItemTab();">Artifacts</div>
+                    <div class="navbar-el" id="reqs" onclick="showReqTab()">Requests</div>
+                    <div class="navbar-el" id="deals" onclick="showDeals()">Deals</div>
+                    <div class="navbar-el" onclick="sendToAuth()" id="profile">
+                        <button class="discord-text">
+                            Login&nbsp;<img class="discord-login-icon" src="/discord-icon2.svg" alt="Discord login icon">
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <script>
+                document.querySelector('.content').style.display = 'none';
+            </script>
+            <div class="landing">
+                <h1>Welcome to the Trade Hub!</h1>
+                <p>Here players can freely exchange artifacts with each other based on their requests.
+                </p>
+                <div class="cell-wrap">
+                    <div class="cell">
+                        Every artifact posted can be seen in the <a onclick="showItemTab()">Artifacts</a> section.
+                    </div>
+                    <div class="cell">
+                        Requests are available to browse in the <a onclick="showReqTab()">Requests</a> tab.
+                    </div>
+                </div>
+                <div id="example" class="cell">
+                    Based on the 2 objects above, in the <a onclick="showDeals()">Deals</a> window you can see how your interests match with other users, like this! <a id="example-trigger" onclick="toggleExampleDealDiv()">(Show)</a>
+                    <div class="item-panel" style="display: none;" id="example-deal">
+                        <div class="item-pair"><div class="item-container">
+                            <div class="type0-icon art-icon"></div>
+                            <div class="type0">TRANSPORT</div>
+                            <div class="value-row">
+                                <div class="level-txt">LVL 11</div>
+                                <div class="dividor">&nbsp;|&nbsp;</div>
+                                <div class="quality-txt">298%</div>
+                            </div>
+                            <div class="owner-txt">User A</div>
+                            <div class="quantity-txt">x4</div>
+                        </div><i class="fa fa-exchange" aria-hidden="true"></i><div class="item-container">
+                            <div class="type1-icon art-icon"></div>
+                            <div class="type1">MINER</div>
+                            <div class="value-row">
+                                <div class="level-txt">LVL 10</div>
+                                <div class="dividor">&nbsp;|&nbsp;</div>
+                                <div class="quality-txt">310%</div>
+                            </div>
+                            <div class="owner-txt">User B</div>
+                            <div class="quantity-txt">x1</div>
+                        </div></div>
+                    </div>
+
+                </div>
+                <div id="welcome-message">
+                    <h3>Join now to boost your research with artifacts you really want!</h3>
+                    <button class="act-btn discord" onclick="sendToAuth()">Continue with Discord</button>
+                </div>
+            </div>
+            <div class="filter" id="f1">
+                <div class="filter-param-wrapper">
+                    <div class="filter-icon-container" id="ft0">
+                        <div class="type0-icon art-icon mini"></div>
+                    </div>
+                    <div class="filter-icon-container" id="ft1">
+                        <div class="type1-icon art-icon mini"></div>
+                    </div>
+                    <div class="filter-icon-container" id="ft2">
+                        <div class="type2-icon art-icon mini"></div>
+                    </div>
+                    <div class="filter-icon-container" id="ft3">
+                        <div class="type3-icon art-icon mini"></div>
+                    </div>
+                    <div class="filter-icon-container" id="ft4">
+                        <div class="type4-icon art-icon mini"></div>
+                    </div>
+                    <div class="filter-icon-container" id="ft5">
+                        <div class="type5-icon art-icon mini"></div>
+                    </div>
+                </div>
+                <div class="filter-param-wrapper">
+                    Quality
+                    <input type="number" placeholder="min(%)" id="fipmin">
+                    -
+                    <input type="number" placeholder="max(%)" id="fipmax">
+                </div>
+                <div class="filter-param-wrapper">
+                    Level
+                    <input type="number" placeholder="min(lvl)" id="filmin">
+                    -
+                    <input type="number" placeholder="max(lvl)" id="filmax">
+                </div>
+                <div class="filter-param-wrapper">
+                    <button style="color: var(--txt);" id="art-search" onclick="search()">Search</button>
+                    <button style="color: red;" id="art-search" onclick="resetFilters()">Reset</button>
+                </div>
+                
+            </div>
+            <div class="item-panel" id="ip1">
+                <div class="loader"></div>
+            </div>
+            <div class="user-portrait-panel"></div>
+            <div class="inventory">
+                <div class="profile"></div>
+                <div class="inventory-items-container">
+                    <div class="value-row">
+                        <div class="inv-title-wrap left">
+                            <h2 class="inventory-title left" id="yi">Items</h2>
+                        </div><h2 class="inventory-title dividor">&nbsp;|&nbsp;</h2>
+                        <div class="inv-title-wrap">
+                            <h2 class="inventory-title inactive" id="yr">Requests</h2></div>
+                        </div>
+                    <div class="item-panel" id="ip2"></div>
+                    <div class="item-panel" id="request-panel" style="display: none;"></div>
+                </div>
+                <div class="edit-window" id="ei">
+                    <h2 class="item-label" id="il">New Item</h2>
+                    <div class="type0-icon art-icon" id="ti"></div>
+                    
+                    <div class="value-row">
+                        <button class="setting-btn" id="tm"><</button>
+                        <div class="type0" id="tt">TRANSPORT</div>
+                        <button class="setting-btn" id="tp">></button>
+                    </div>
+                    <div class="value-col">
+                        <label>Quantity</label>
+                        <div class="value-row">
+                            <button class="setting-btn" id="qnm">-</button>
+                            <input class="setting-btn" value="3" id="qni" min="0" max="30">
+                            <button class="setting-btn" id="qnp">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="value-col">
+                        <label>Level</label>
+                        <div class="value-row">
+                            <button class="setting-btn" id="lm">-</button>
+                            <input class="setting-btn" value="3" id="li" min="0" max="12">
+                            <button class="setting-btn" id="lp">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="value-col">
+                        <label>Quality</label>
+                        <div class="value-row">
+                            <input class="setting-btn" value="193" type="number" id="qli" min="0" max="400">%
+                        </div>
+                    </div>
+                    
+                    <div class="value-row wide">
+                        <button class="act-btn green" id="add" onclick="addItem()">ADD</button>
+                        <button class="act-btn orange" id="edit" onclick="editItem()">EDIT</button>
+                        <button class="act-btn" id="delete" onclick="removeItem()">REMOVE</button>
+                        <button class="act-btn grey" id="cancel" onclick="hide(addItemDiv);show(inventoryItemsDiv)">CANCEL</button>
+                    </div>
+                </div>
+
+                <div class="edit-window" id="er">
+                    <h2 class="item-label" id="rl">New Request</h2>
+                    <div class="type0-icon art-icon" id="rti"></div>
+                    
+                    <div class="value-row">
+                        <button class="setting-btn" id="rtm"><</button>
+                        <div class="type0" id="rtt">TRANSPORT</div>
+                        <button class="setting-btn" id="rtp">></button>
+                    </div>
+                    
+                    <div class="value-col">
+                        <label>Min-Max Level</label>
+                        <div class="value-row">
+                            <input class="setting-btn" type="number" id="lirmin">
+                            -
+                            <input class="setting-btn" type="number" id="lirmax">
+                        </div>
+                    </div>
+                    
+                    <div class="value-col">
+                        <label>Min Quality</label>
+                        <div class="value-row">
+                            <input class="setting-btn" value="193" type="number" id="qlir" min="0" max="400">%
+                        </div>
+                    </div>
+                    
+                    <div class="value-row wide">
+                        <button class="act-btn green" id="addr" onclick="addReq()">ADD</button>
+                        <button class="act-btn orange" id="editr" onclick="editReq()">EDIT</button>
+                        <button class="act-btn" id="deleter" onclick="removeReq()">REMOVE</button>
+                        <button class="act-btn grey" id="cancelr" onclick="hide(addReqDiv);show(inventoryItemsDiv)">CANCEL</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
