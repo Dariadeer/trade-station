@@ -112,7 +112,6 @@ function showMembers() {
             panel.innerHTML = "";
             show(panel);
             let t = 0;
-            let size = data.length;
             for(let user of data) {
                 setTimeout(() => {
                     panel.append(createUserElement(user));
@@ -450,7 +449,7 @@ function resetFilters() {
         maxQuality: 400,
         minLvl: 1,
         maxLvl: 12
-    }
+    };
 
     saveFilters();
     setFilters();
@@ -648,6 +647,14 @@ async function removeItem() {
     hide(addItemDiv);
     show(inventoryItemsDiv);
 
+    const addItemEl = itemPanel2.querySelector('#add-item');
+    itemPanel2.removeChild(addItemEl);
+    itemPanel2.append(addItemEl);
+    if(inventory.items.length < 20){
+        show(addItemEl);
+    } else {
+        hide(addItemEl);
+    }
 }
 
 async function removeReq() {
@@ -672,6 +679,14 @@ async function removeReq() {
     hide(addReqDiv);
     show(inventoryItemsDiv);
 
+    const addItemEl = requestPanel.querySelector('#add-item');
+    requestPanel.removeChild(addItemEl);
+    requestPanel.append(addItemEl);
+    if(inventory.requests.length < 5) {
+        show(addItemEl);
+    } else {
+        hide(addItemEl);
+    }
 }
 
 function updateUserProfile() {
@@ -979,7 +994,7 @@ function setupCLI() {
             if(resultObj.error) {
                 cliOutput.innerHTML += `<div class="cli-output cli-error">${resultObj.error}</div>`;
             } else {
-                cliOutput.innerHTML += `<div class="cli-output">${JSON.stringify(resultObj, null, 4).replaceAll(/\"(.*)\"\:/g, '<label class="cli-attribute">$1</label>:').replaceAll(/: (\".*\")/g, ': <label class="cli-string">$1</label>').replaceAll(/: ([0-9]*)/g, ': <label class="cli-number">$1</label>')}</div>`;
+                cliOutput.innerHTML += `<div class="cli-output">${JSON.stringify(resultObj, null, 4).replaceAll(/"(.*)":/g, '<label class="cli-attribute">$1</label>:').replaceAll(/: (".*")/g, ': <label class="cli-string">$1</label>').replaceAll(/: ([0-9]*)/g, ': <label class="cli-number">$1</label>')}</div>`;
             }
         }
     })
@@ -1029,6 +1044,11 @@ async function addReq() {
     const addItemEl = requestPanel.querySelector('#add-item');
     requestPanel.removeChild(addItemEl);
     requestPanel.append(addItemEl);
+    if(inventory.requests.length < 5) {
+        show(addItemEl);
+    } else {
+        hide(addItemEl);
+    }
 }
 
 async function addItem() {
@@ -1044,7 +1064,7 @@ async function addItem() {
         return errorMessage(res.error);
     }
 
-    inventory.items.push(res)
+    inventory.items.push(res);
 
     hide(addItemDiv);
     show(inventoryItemsDiv);
@@ -1060,6 +1080,11 @@ async function addItem() {
     const addItemEl = itemPanel2.querySelector('#add-item');
     itemPanel2.removeChild(addItemEl);
     itemPanel2.append(addItemEl);
+    if(inventory.items.length < 20) {
+        show(addItemEl);
+    } else {
+        hide(addItemEl);
+    }
 }
 
 function logout() {
