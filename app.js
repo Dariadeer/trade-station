@@ -461,7 +461,7 @@ app.get('/*', (req, res) => {
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-// app.listen(port, '192.168.1.247', () => console.log(`Server is running (local-ip) on port ${port}`));
+app.listen(port, process.env.PUBLIC_IP, () => console.log(`Server is running (local-ip) on port ${port}`));
 
 function waitForCommand() {
     rl.question('', async cmd => {
