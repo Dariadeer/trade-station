@@ -13,7 +13,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-waitForCommand();
+// waitForCommand();
 
 const app = express();
 const port = process.env.PORT || 4000;
