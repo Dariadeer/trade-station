@@ -85,8 +85,6 @@ app.get('/api/deals', async (req, res) => {
             })
         }
 
-        console.log(session);
-
         const result = await db.findDeals(session.userId);
         res.json({
             deals: formatDeals(result)
@@ -122,8 +120,6 @@ app.post('/api/remove-item', async (req, res) => {
 
     const itemOwner = (await db.getItemOwner(id))[0];
 
-    console.log(session, itemOwner);
-
     if(session && itemOwner && itemOwner.userId === session.userId) {
         try {
            await db.removeItem(id); 
@@ -148,8 +144,6 @@ app.post('/api/remove-request', async (req, res) => {
     const session = (await db.getSession(code))[0];
 
     const requestOwner = (await db.getRequestOwner(id))[0];
-
-    console.log(session, requestOwner);
 
     if(session && requestOwner && requestOwner.userId === session.userId) {
         try {
@@ -306,8 +300,6 @@ app.post('/api/edit-request', async (req, res) => {
     const { code } = req.cookies;
     const session = (await db.getSession(code))[0];
 
-    console.log(params, session);
-
     if (session
         && params.minQuality !== null && params.minQuality >= 0 && params.minQuality <= 400
         && params.minLevel !== null && params.minLevel > 0 && params.minLevel <= 12
@@ -382,30 +374,35 @@ app.get('/api/update-me', async (req, res) => {
 
 app.get('/api/me', async (req, res) => {
 
-    const { code } = req.cookies;
+    try {
+        const { code } = req.cookies;
 
-    if(!code) {
-        return res.json({
-            code: 0,
-            message: 'You are not logged in'
-        });
-    }
+        if(!code) {
+            return res.json({
+                code: 0,
+                message: 'You are not logged in'
+            });
+        }
 
-    const session = (await db.getSession(code))[0];
+        const session = (await db.getSession(code))[0];
 
-    if(session) {
-        const user = (await db.getUser(session.userId))[0];
-        const info = Object.assign(await getUserInfo(session.userId), user);
-        res.json(info);
-    } else {
-        res.clearCookie('code');
+        if(session) {
+            const user = (await db.getUser(session.userId))[0];
+            const info = Object.assign(await getUserInfo(session.userId), user);
+            res.json(info);
+        } else {
+            res.clearCookie('code');
+            res.json({
+                code: 1,
+                message: 'You are either not invited or your session is expired'
+            });
+        }
+    } catch (e) {
         res.json({
-            code: 1,
-            message: 'You are either not invited or your session is expired'
-        });
+            error: e
+        })
     }
-
-})
+});
 
 app.get('/api/auth', auth);
 
@@ -461,7 +458,7 @@ app.get('/*', (req, res) => {
 
 // app.listen(port, () => console.log(`Server is running on port localhost:${port}`));
 
-app.listen(port, process.env.PUBLIC_IP, () => console.log(`Server is running on ${process.env.PUBLIC_IP}:${port}`));
+app.listen(port, process.env.PUBLIC_IP, () => console.log(`Server is running on http://${process.env.PUBLIC_IP}:${port}`));
 
 function waitForCommand() {
     rl.question('', async cmd => {

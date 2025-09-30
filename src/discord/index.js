@@ -5,6 +5,8 @@ async function auth (req, res) {
 
     const { code } = req.query;
 
+    console.log(code);
+
     try {
         const resp = await axios.post('https://discord.com/api/oauth2/token',
             new URLSearchParams({
@@ -27,7 +29,7 @@ async function auth (req, res) {
             },
             })).data;
 
-            console.log(userData);
+        console.log(userData);
 
         if(await findUser(userData.id)) {
             
@@ -46,6 +48,7 @@ async function auth (req, res) {
 }
 
 async function getUserInfo(id) {
+    console.log('ID:', id);    
     const res = await axios.get(`https://discord.com/api/v9/users/${id + ''}`, {
         headers: {
             Authorization: `Bot ${process.env.BOT_TOKEN}`
