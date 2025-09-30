@@ -45,7 +45,7 @@ async function auth (req, res) {
 
     res.cookie('code', code, { maxAge: 2592000000, httpOnly: true });
     console.log('REDIRECTING...');
-    // res.redirect('/');
+    res.redirect('/');
 }
 
 async function getUserInfo(id) {
