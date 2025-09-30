@@ -5,8 +5,6 @@ async function auth (req, res) {
 
     const { code } = req.query;
 
-    console.log(code);
-
     try {
         const resp = await axios.post('https://discord.com/api/oauth2/token',
             new URLSearchParams({
@@ -44,7 +42,6 @@ async function auth (req, res) {
     }
 
     res.cookie('code', code, { maxAge: 2592000000, httpOnly: true });
-    console.log('REDIRECTING...');
     res.redirect('/');
 }
 
