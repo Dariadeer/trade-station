@@ -456,7 +456,7 @@ app.get('/*', (req, res) => {
     res.sendFile(__dirname + '/client/index.html');
 })
 
-app.listen(port, () => console.log(`Server is running on port localhost:${port}`));
+// app.listen(port, () => console.log(`Server is running on port localhost:${port}`));
 
 app.listen(port, process.env.PUBLIC_IP, () => console.log(`Server is running on http://${process.env.PUBLIC_IP}:${port}`));
 
