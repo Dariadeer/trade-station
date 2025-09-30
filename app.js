@@ -88,7 +88,6 @@ app.get('/api/deals', async (req, res) => {
         console.log(session);
 
         const result = await db.findDeals(session.userId);
-
         res.json({
             deals: formatDeals(result)
         })

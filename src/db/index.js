@@ -265,7 +265,8 @@ function findDeals(userId) {
     JOIN 
         users u2 ON u2.id = r2.userId
     WHERE 
-        r1.userId = '${userId}';
+        r1.userId = '${userId}'
+    ORDER BY stockAQuality DESC;
   `);
 }
 

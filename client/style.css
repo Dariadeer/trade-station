@@ -312,6 +312,8 @@ body {
 
 .inventory-title {
     width: fit-content;
+    min-width: 20px;
+    text-align: center;
 }
 
 .inactive {
