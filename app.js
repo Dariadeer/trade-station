@@ -452,10 +452,10 @@ app.get('/api/my-inventory', async (req, res) => {
     }
 })
 
-app.get('/*', (req, res) => {
-    console.log(req.path);
-    res.sendFile(__dirname + '/client/index.html');
-})
+// app.get('/*', (req, res) => {
+//     console.log(req.path);
+//     res.sendFile(__dirname + '/client/index.html');
+// })
 
 // app.listen(port, () => console.log(`Server is running on port localhost:${port}`));
 
