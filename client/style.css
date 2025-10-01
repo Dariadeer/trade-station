@@ -521,7 +521,8 @@ input[type=number] {
 
 .inventory-items-container > .item-panel {
     height: 66vh;
-    overflow-y: scroll;
+    overflow-y: overlay;
+    scrollbar-color: var(--main) var(--bg2);
     animation: 0.5s forwards linear appear;
 }
 
